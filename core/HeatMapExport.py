@@ -37,8 +37,8 @@ from config import CONFIG
 #--------------------------------------------------------------
 # Globl Constants & Functions
 #--------------------------------------------------------------
-HOTBYUID = "" 
-HOTBYPOI = "" 
+HOTBYUID = "http://spotshot.baidu.com/getSpotHotByUid.php"
+HOTBYPOI = "http://spotshot.baidu.com/getSpotHot.php"
 
 #--------------------------------------------------------------
 # Classes
@@ -188,12 +188,13 @@ class HeatMapExport(object):
         return infos
 
     def writeCsv(self, infos, timestamp):
-        timeStr = time.strftime("%Y-%m-%d_%H_%M", time.localtime(float(timestamp)))
-        with open("%s/%s" % (OUT_DIR,timeStr), "w") as result:
+        timeStr = time.strftime("%Y-%m-%d %H:%M", time.localtime(float(timestamp)))
+        fileName = timeStr.split()[0]
+        with open("%s/%s" % (OUT_DIR, fileName), "a+") as result:
             for info in infos:
                 for value in info["data"]:
                     strValue = json.dumps(value).replace("{", "").replace("}", "")
-                    result.write("%s, %s\n" % (info['city_poi'].encode('utf-8'), strValue))
+                    result.write("%s, %s, %s\n" % (info['city_poi'].encode('utf-8'), strValue, timeStr))
 
     def getStoreInfo(self, cityPoi, timestamp):
         for cl in cityPoi:

@@ -16,6 +16,7 @@
 #
 #
 import time
+import datetime
 from HeatMapExport import HeatMapExport
 #--------------------------------------------------------------
 # Globl Constants & Functions
@@ -50,5 +51,10 @@ class GenData(HeatMapExport):
 
 if __name__ == "__main__":
     gd = GenData()
-    timeList = gd.getDate("2015-06-24", "2015-06-25")
+    now = datetime.date.today()
+    #weekday = int(now.strftime("%w")) - 1
+    #delta = datetime.timedelta(days=weekday)
+    oneday = datetime.timedelta(days=3)
+    datastr = now - oneday
+    timeList = gd.getDate(str(datastr), str(now))
     gd.generateData(timeList)
