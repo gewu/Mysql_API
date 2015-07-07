@@ -37,8 +37,8 @@ from config import CONFIG
 #--------------------------------------------------------------
 # Globl Constants & Functions
 #--------------------------------------------------------------
-HOTBYUID = "http://spotshot.baidu.com/getSpotHotByUid.php"
-HOTBYPOI = "http://spotshot.baidu.com/getSpotHot.php"
+HOTBYUID = "http://host/getSpotHotByUid.php"
+HOTBYPOI = "http://host/getSpotHot.php"
 
 #--------------------------------------------------------------
 # Classes
